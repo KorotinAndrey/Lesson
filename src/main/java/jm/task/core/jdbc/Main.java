@@ -10,13 +10,6 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        UserDao userDao = new UserDao();
-
-        User user = new User("Andrey", "Korotin", (byte) 31);
-        userDao.saveUser(user);
-
-        System.out.println(user.getId());
-
 
     }
 }
