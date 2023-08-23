@@ -15,25 +15,25 @@ public class UserDaoHibernateImpl implements UserDao {
         this.sessionFactory = Util.getSessionFactory();
     }
 
+        @Override
 
-    @Override
-    public void createUsersTable() {
+        public void createUsersTable () {
         Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
         session.createNativeQuery("CREATE TABLE IF NOT EXISTS users (id SERIAL PRIMARY KEY, name VARCHAR(255), lastName VARCHAR(255), age TINYINT)").executeUpdate();
         session.getTransaction().commit();
     }
 
-    @Override
-    public void dropUsersTable() {
-        Session session= sessionFactory.getCurrentSession();
+        @Override
+        public void dropUsersTable () {
+        Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
         session.createNativeQuery("DROP TABLE IF EXISTS users").executeUpdate();
         session.getTransaction().commit();
     }
 
-    @Override
-    public void saveUser(String name, String lastName, byte age) {
+        @Override
+        public void saveUser (String name, String lastName,byte age){
         Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
         session.createNativeQuery("INSERT INTO users (name, lastName, age) VALUES (?, ?, ?)")
@@ -44,8 +44,8 @@ public class UserDaoHibernateImpl implements UserDao {
         session.getTransaction().commit();
     }
 
-    @Override
-    public void removeUserById(long id) {
+        @Override
+        public void removeUserById ( long id){
         Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
         session.createNativeQuery("DELETE FROM users WHERE id = ?")
@@ -54,8 +54,8 @@ public class UserDaoHibernateImpl implements UserDao {
         session.getTransaction().commit();
     }
 
-    @Override
-    public List<User> getAllUsers() {
+        @Override
+        public List<User> getAllUsers () {
         Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
         List<User> users = session.createNativeQuery("SELECT * FROM users", User.class).list();
@@ -63,11 +63,12 @@ public class UserDaoHibernateImpl implements UserDao {
         return users;
     }
 
-    @Override
-    public void cleanUsersTable() {
+        @Override
+        public void cleanUsersTable () {
         Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
         session.createNativeQuery("DELETE FROM users").executeUpdate();
         session.getTransaction().commit();
+
     }
 }
