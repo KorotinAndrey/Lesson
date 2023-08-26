@@ -15,6 +15,7 @@ import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+
 import java.util.Properties;
 
 public class Util {
@@ -78,10 +79,10 @@ public class Util {
                 configuration.setProperties(settings);
 
                 configuration.addAnnotatedClass(User.class);
-                ServiceRegistry serviceRegistry = (ServiceRegistry) new StandardServiceRegistryBuilder()
+                ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                         .applySettings(configuration.getProperties()).build();
 
-                sessionFactory = configuration.buildSessionFactory((org.hibernate.service.ServiceRegistry) serviceRegistry);
+                sessionFactory = configuration.buildSessionFactory(serviceRegistry);
             } catch (Exception e) {
                 System.out.println("Исключение! " + e);
             }
