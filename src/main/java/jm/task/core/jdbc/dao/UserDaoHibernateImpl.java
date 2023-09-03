@@ -9,7 +9,7 @@ import java.util.List;
 
 public class UserDaoHibernateImpl implements UserDao {
 
-    private SessionFactory sessionFactory;
+    private final SessionFactory sessionFactory;
     public UserDaoHibernateImpl() {
         this.sessionFactory = Util.getSessionFactory();
     }
